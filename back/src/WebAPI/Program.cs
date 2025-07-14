@@ -1,3 +1,5 @@
+using Infrastructure;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
@@ -9,6 +11,7 @@ builder.Services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
 
 builder.Services.AddControllers();
 
+builder.Services.AddInfrastructure(builder.Configuration);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -26,6 +29,7 @@ app.MapGet("/", () => Results.Ok("API is healthy!"));
 
 app.UseHttpsRedirection();
 app.UseAuthorization();
+app.UseCors("MyPolicy");
 app.MapControllers();
 app.Run();
 

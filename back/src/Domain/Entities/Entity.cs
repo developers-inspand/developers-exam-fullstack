@@ -22,6 +22,11 @@ public abstract class Entity<TEntity> : AbstractValidator<TEntity>, IHasDomainEv
         DomainEvents = [];
     }
 
+    protected void RaiseDomainEvent(DomainEvent domainEvent)
+    {
+        DomainEvents.Add(domainEvent);
+    }
+
     public void SetLastAction()
     {
         if (Id > 0)

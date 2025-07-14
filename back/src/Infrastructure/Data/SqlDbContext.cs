@@ -1,4 +1,5 @@
 using System.Reflection;
+using Domain.Entities.Books;
 using Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
@@ -7,6 +8,7 @@ namespace Infrastructure.Data;
 
 public class SqlDbContext : DbContext
 {
+    public DbSet<Book> Books { get; set; }
     private readonly IDomainEventHandler _domainEventService;
 
     public SqlDbContext(DbContextOptions<SqlDbContext> options, IDomainEventHandler domainEventService) : base(options)
